@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @State private var selectedMedia: ProfileMediaViewModel = .grid
+    @State var selectedMedia: ProfileMediaViewModel = .grid
     
     var body: some View {
         NavigationView {
@@ -45,12 +45,9 @@ struct ProfileView: View {
                 }
                 .padding(8)
             }
-            .navigationTitle("profile")
-            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 HStack{
-                    NavigationLink {
-                        MessageList()
+                    Button {
                         //action goes here
                     } label: {
                         Image(systemName: "plus.square")
@@ -68,6 +65,7 @@ struct ProfileView: View {
                 }
             }
         }
+        .navigationBarTitle("Profile")
     }
 }
 

@@ -9,14 +9,11 @@ import SwiftUI
 
 struct Stories: View {
     var body: some View {
-        Circle()
+        Image("photo3")
             .frame(width: 80)
             .foregroundColor(Color.purple)
-            .overlay {
-                Image(systemName: "person")
-                    .foregroundColor(Color.white)
-                    .font(.title)
-        }
+            .clipShape(Circle())
+           
     }
 }
 struct Stories_Previews: PreviewProvider {

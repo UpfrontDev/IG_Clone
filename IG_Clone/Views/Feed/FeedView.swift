@@ -8,25 +8,23 @@
 import SwiftUI
 
 struct FeedView: View {
+    @State var currentView : NavigationType = .home
     var body: some View {
-        NavigationView{
-            VStack{
-                ScrollView(showsIndicators: false){
-                    //MARK: - Stories
-                    ScrollView(.horizontal,showsIndicators: false) {
-                        HStack {
-                            ForEach(1...10, id: \.self) { _ in
-                                Stories()
-                            }
+        VStack{
+            ScrollView(showsIndicators: false){
+                //MARK: - Stories
+                ScrollView(.horizontal,showsIndicators: false) {
+                    HStack {
+                        ForEach(1...10, id: \.self) { _ in
+                            Stories()
                         }
-                    }
-                    Divider()
-                    ForEach(1...20, id: \.self){_ in
-                        PostCard(user: "photo6")
-                    }
+                    }.frame(width:UIScreen.main.bounds.width,height: 100)
+                }
+                Divider()
+                ForEach(1...20, id: \.self){_ in
+                    PostCard(user: "photo6")
                 }
             }
-            .navigationTitle("Instagram")
         }
     }
 }

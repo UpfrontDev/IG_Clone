@@ -8,50 +8,53 @@
 import SwiftUI
 
 struct Tab: View {
-    @State var mainStack : [NavigationType] = []
+    @State var currentView = FeedView()
     var body: some View {
-        NavigationStack(path: $mainStack){
-            TabView{
+        TabView{
+            NavigationView{
                 FeedView()
-                    .tabItem {
-                        Image(systemName: "house")
-                    }
-                SearchView()
-                    .tabItem {
-                        Image(systemName:"magnifyingglass")
-                    }
-                ReelsView()
-                    .tabItem {
-                        Image(systemName: "play.square")
-                    }
-                ActivityView()
-                    .tabItem {
-                        Image(systemName: "heart")
-                    }
-                ProfileView()
-                    .tabItem {
-                        Image(systemName: "person")
-                    }
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing){
-                        
-                        Button{
-                            mainStack.append(.messages)
-                        }label: {
-                            Image(systemName:"bolt.horizontal.circle")
-                                .foregroundColor(Color("darkAndWhite"))
-                                .font(.title3)
+                    .navigationTitle("Instagram")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing){
+                            HStack {
+                                NavigationLink{
+                                    MessageList()
+                                }label: {
+                                    Image(systemName:"paperplane")
+                                        .foregroundColor(Color("darkAndWhite"))
+                                        .font(.title3)
+                            }
+                                NavigationLink{
+                                    ReelsView()
+                                }label: {
+                                    Image(systemName:"plus.app")
+                                        .foregroundColor(Color("darkAndWhite"))
+                                        .font(.title3)
+                                }
+                            }
+                            
                         }
-                }
+                    }
+            }.tabItem{
+                Image(systemName: "house")
             }
-            .navigationDestination(for: NavigationType.self) { value in
-                switch value{
-                case .messages: MessageList()
-                case .home:
-                    FeedView()
+            SearchView()
+                .tabItem{
+                    Image(systemName: "magnifyingglass")
                 }
-            }
+            ReelsView()
+                .tabItem{
+                    Image(systemName: "play.square")
+                }
+            ActivityView()
+                .tabItem{
+                    Image(systemName: "heart")
+                }
+            ProfileView()
+                .tabItem{
+                    Image(systemName: "person")
+                }
         }
     }
 }
